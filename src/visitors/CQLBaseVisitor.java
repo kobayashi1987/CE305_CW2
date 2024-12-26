@@ -53,7 +53,14 @@ public class CQLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements CQ
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitColumnList(CQLParser.ColumnListContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAllColumns(CQLParser.AllColumnsContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitSpecificColumns(CQLParser.SpecificColumnsContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

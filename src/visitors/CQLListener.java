@@ -58,15 +58,29 @@ public interface CQLListener extends ParseTreeListener {
 	 */
 	void exitDeleteStmt(CQLParser.DeleteStmtContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CQLParser#columnList}.
+	 * Enter a parse tree produced by the {@code AllColumns}
+	 * labeled alternative in {@link CQLParser#columnList}.
 	 * @param ctx the parse tree
 	 */
-	void enterColumnList(CQLParser.ColumnListContext ctx);
+	void enterAllColumns(CQLParser.AllColumnsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CQLParser#columnList}.
+	 * Exit a parse tree produced by the {@code AllColumns}
+	 * labeled alternative in {@link CQLParser#columnList}.
 	 * @param ctx the parse tree
 	 */
-	void exitColumnList(CQLParser.ColumnListContext ctx);
+	void exitAllColumns(CQLParser.AllColumnsContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SpecificColumns}
+	 * labeled alternative in {@link CQLParser#columnList}.
+	 * @param ctx the parse tree
+	 */
+	void enterSpecificColumns(CQLParser.SpecificColumnsContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SpecificColumns}
+	 * labeled alternative in {@link CQLParser#columnList}.
+	 * @param ctx the parse tree
+	 */
+	void exitSpecificColumns(CQLParser.SpecificColumnsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link CQLParser#valueList}.
 	 * @param ctx the parse tree

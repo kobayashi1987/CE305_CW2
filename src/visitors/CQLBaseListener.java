@@ -77,13 +77,25 @@ public class CQLBaseListener implements CQLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterColumnList(CQLParser.ColumnListContext ctx) { }
+	@Override public void enterAllColumns(CQLParser.AllColumnsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitColumnList(CQLParser.ColumnListContext ctx) { }
+	@Override public void exitAllColumns(CQLParser.AllColumnsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSpecificColumns(CQLParser.SpecificColumnsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSpecificColumns(CQLParser.SpecificColumnsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -41,11 +41,19 @@ public interface CQLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDeleteStmt(CQLParser.DeleteStmtContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link CQLParser#columnList}.
+	 * Visit a parse tree produced by the {@code AllColumns}
+	 * labeled alternative in {@link CQLParser#columnList}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitColumnList(CQLParser.ColumnListContext ctx);
+	T visitAllColumns(CQLParser.AllColumnsContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SpecificColumns}
+	 * labeled alternative in {@link CQLParser#columnList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSpecificColumns(CQLParser.SpecificColumnsContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link CQLParser#valueList}.
 	 * @param ctx the parse tree
