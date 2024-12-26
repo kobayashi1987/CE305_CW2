@@ -1,5 +1,6 @@
 package interactive;
 
+import ast.*;
 import visitors.CQLLexer;
 import visitors.CQLParser;
 import error.CQLCustomErrorListener;
@@ -9,7 +10,6 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -81,7 +81,18 @@ public class CQLInteractive {
             // 7. Begin parsing at the 'query' rule
             ParseTree tree = parser.query();
 
-            // 8. Create a walker and attach listeners
+            // 8. Create an AST builder visitor and build the AST
+            ASTBuilderVisitor astBuilder = new ASTBuilderVisitor();
+            ASTNode ast = astBuilder.visit(tree);
+
+            // 9. Print the AST
+            System.out.println("Abstract Syntax Tree (AST):");
+            ASTPrinter printer = new ASTPrinter();
+            ast.accept(printer);
+            System.out.println();
+
+            // 10. Create a walker and attach listeners (optional, as AST already represents the query)
+            /*
             ParseTreeWalker walker = new ParseTreeWalker();
 
             // Listener to print the parsed query
@@ -91,6 +102,25 @@ public class CQLInteractive {
             // Listener to perform type checking
             CQLTypeCheckListener typeCheckListener = new CQLTypeCheckListener();
             walker.walk(typeCheckListener, tree);
+            */
+
+            // Alternatively, you can perform type checking directly on the AST
+            // by traversing it with a separate visitor or using the existing listeners.
+
+            // For simplicity, we'll keep the existing type checking via listeners.
+
+            // To perform type checking using listeners, uncomment the following:
+            /*
+            ParseTreeWalker walker = new ParseTreeWalker();
+            CQLPrintListener printListener = new CQLPrintListener();
+            walker.walk(printListener, tree);
+
+            CQLTypeCheckListener typeCheckListener = new CQLTypeCheckListener();
+            walker.walk(typeCheckListener, tree);
+            */
+
+            // However, it's more efficient to perform operations directly on the AST.
+            // You can implement separate visitors or methods for type checking based on the AST.
 
         } catch (RuntimeException e) {
             // Catch and display syntax errors
@@ -98,4 +128,3 @@ public class CQLInteractive {
         }
     }
 }
-

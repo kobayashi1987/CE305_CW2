@@ -79,4 +79,3 @@ public class CQLPrintListener extends CQLBaseListener {
         System.out.println(">> Exiting DELETE statement\n");
     }
 }
-
